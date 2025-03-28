@@ -1,0 +1,135 @@
+[
+  {
+    "id": "monster-survivors",
+    "name": "Monster Survivors",
+    "description": "Survive endless waves of monsters in this addictive action-packed survival game. Choose your character, level up, and unlock new abilities.",
+    "url": "https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html",
+    "thumbnail": "assets/images/game1.svg",
+    "category": ["Action", "Survival", "Roguelike"],
+    "tags": ["Endless", "Character Progression", "Monsters", "Top-down"],
+    "rating": {
+      "score": 4.8,
+      "count": 243
+    },
+    "addedDate": "2023-03-15",
+    "popularity": 95,
+    "features": [
+      "Multiple playable characters",
+      "Endless gameplay mode",
+      "Character progression and upgrades",
+      "Various enemy types",
+      "Simple controls"
+    ],
+    "instructions": {
+      "movement": "WASD or Arrow Keys",
+      "attack": "Automatic when enemies are in range",
+      "special": "Spacebar (when available)"
+    },
+    "author": "MonsterSurvivors Team",
+    "recommended": true
+  },
+  {
+    "id": "monster-arena",
+    "name": "Monster Arena",
+    "description": "A PvP battle arena where monsters fight for supremacy. Collect monsters, build your team, and battle against other players.",
+    "url": "#",
+    "thumbnail": "assets/images/game2.svg",
+    "category": ["Battle", "PvP", "Strategy"],
+    "tags": ["Arena", "Multiplayer", "Collection"],
+    "rating": {
+      "score": 4.5,
+      "count": 128
+    },
+    "addedDate": "2023-06-20",
+    "popularity": 85,
+    "features": [
+      "PvP battles",
+      "Monster collection",
+      "Team building",
+      "Seasonal competitions"
+    ],
+    "comingSoon": true,
+    "author": "MonsterSurvivors Team",
+    "recommended": false
+  },
+  {
+    "id": "monster-dungeon",
+    "name": "Monster Dungeon",
+    "description": "Explore procedurally generated dungeons filled with monsters. Find treasures, discover powerful artifacts, and defeat unique bosses.",
+    "url": "#",
+    "thumbnail": "assets/images/game3.svg",
+    "category": ["Dungeon Crawler", "RPG", "Adventure"],
+    "tags": ["Exploration", "Looting", "Boss Fights"],
+    "rating": {
+      "score": 4.3,
+      "count": 89
+    },
+    "addedDate": "2023-08-10",
+    "popularity": 75,
+    "features": [
+      "Procedurally generated levels",
+      "Epic boss fights",
+      "Treasure hunting",
+      "Character customization"
+    ],
+    "comingSoon": true,
+    "author": "MonsterSurvivors Team",
+    "recommended": false
+  },
+  {
+    "id": "your-existing-game",
+    "name": "您的已有游戏",
+    "description": "这是您之前制作并独立部署的游戏。现在将它整合到聚合平台中。",
+    "url": "https://您的游戏域名.com",
+    "thumbnail": "assets/images/placeholder.svg",
+    "category": ["Casual", "Puzzle"],
+    "tags": ["Easy to Learn", "Addictive", "Quick Play"],
+    "rating": {
+      "score": 4.6,
+      "count": 58
+    },
+    "addedDate": "2024-03-20",
+    "popularity": 80,
+    "features": [
+      "简单易上手",
+      "关卡丰富",
+      "精美画面",
+      "流畅体验"
+    ],
+    "instructions": {
+      "movement": "鼠标点击",
+      "action": "拖拽操作"
+    },
+    "author": "您的名字/团队",
+    "recommended": true
+  },
+  {
+    "id": "simple-collection-game",
+    "name": "简易收集游戏",
+    "description": "一个简单的演示游戏，展示HTML5游戏聚合平台的集成功能。使用鼠标移动蓝色圆点收集红色方块获得分数。",
+    "url": "game-demo/index.html",
+    "thumbnail": "assets/images/placeholder.svg",
+    "category": ["Casual", "Demo"],
+    "tags": ["Simple", "Collection", "Demo"],
+    "rating": {
+      "score": 4.0,
+      "count": 12
+    },
+    "addedDate": "2024-03-28",
+    "popularity": 50,
+    "features": [
+      "简单操作",
+      "成就系统",
+      "进度保存",
+      "用户信息同步"
+    ],
+    "instructions": {
+      "movement": "鼠标移动",
+      "collection": "与红色方块碰撞",
+      "save": "点击保存按钮"
+    },
+    "author": "HTML5游戏聚合平台",
+    "recommended": true,
+    "isDemo": true
+  }
+] 

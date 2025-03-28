@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5游戏演示</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #2c3e50;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .game-header {
+      background-color: #34495e;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .game-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .user-info {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .user-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #3498db;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .game-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    .game-canvas {
+      width: 500px;
+      height: 300px;
+      max-width: 100%;
+      background-color: #1a2733;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .game-player {
+      width: 40px;
+      height: 40px;
+      background-color: #3498db;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.1s ease;
+    }
+    
+    .game-target {
+      width: 30px;
+      height: 30px;
+      background-color: #e74c3c;
+      border-radius: 5px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+    }
+    
+    .game-score {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 5px 10px;
+      border-radius: 20px;
+    }
+    
+    .game-controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .achievement-popup {
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background-color: #27ae60;
+      padding: 10px 15px;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      max-width: 250px;
+    }
+    
+    .achievement-popup.show {
+      transform: translateX(0);
+    }
+    
+    .achievement-icon {
+      margin-right: 10px;
+      font-size: 24px;
+    }
+    
+    button {
+      background-color: #3498db;
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    button:hover {
+      background-color: #2980b9;
+    }
+    
+    button:active {
+      transform: translateY(1px);
+    }
+  </style>
+</head>
+<body>
+  <div class="game-header">
+    <div class="game-title">简易收集游戏</div>
+    <div class="user-info">
+      <div class="user-avatar">?</div>
+      <span class="user-name">游客</span>
+    </div>
+  </div>
+  
+  <div class="game-container">
+    <div class="game-canvas">
+      <div class="game-player"></div>
+      <div class="game-score">得分: <span id="score">0</span></div>
+    </div>
+    
+    <div class="achievement-popup" id="achievement">
+      <div class="achievement-icon">🏆</div>
+      <div>
+        <div class="achievement-title">获得成就!</div>
+        <div class="achievement-desc">成就描述</div>
+      </div>
+    </div>
+    
+    <div class="game-controls">
+      <button id="start-btn">开始游戏</button>
+      <button id="send-progress-btn">保存进度</button>
+      <button id="unlock-achievement-btn">解锁成就</button>
+    </div>
+  </div>
+  
+  <script>
+    // 游戏状态
+    const gameState = {
+      playerX: 50,
+      playerY: 50,
+      score: 0,
+      targetX: 0,
+      targetY: 0,
+      isPlaying: false,
+      userInfo: null
+    };
+    
+    // 游戏元素
+    const gameElements = {
+      player: document.querySelector('.game-player'),
+      canvas: document.querySelector('.game-canvas'),
+      scoreDisplay: document.getElementById('score'),
+      startButton: document.getElementById('start-btn'),
+      saveProgressButton: document.getElementById('send-progress-btn'),
+      achievementButton: document.getElementById('unlock-achievement-btn'),
+      achievementPopup: document.getElementById('achievement'),
+      userAvatar: document.querySelector('.user-avatar'),
+      userName: document.querySelector('.user-name')
+    };
+    
+    // 生成随机位置
+    function generateRandomPosition() {
+      const canvasRect = gameElements.canvas.getBoundingClientRect();
+      const maxX = canvasRect.width - 30;
+      const maxY = canvasRect.height - 30;
+      
+      return {
+        x: Math.random() * maxX,
+        y: Math.random() * maxY
+      };
+    }
+    
+    // 创建目标
+    function createTarget() {
+      // 移除旧目标
+      const oldTarget = document.querySelector('.game-target');
+      if (oldTarget) {
+        oldTarget.remove();
+      }
+      
+      // 生成随机位置
+      const position = generateRandomPosition();
+      gameState.targetX = position.x;
+      gameState.targetY = position.y;
+      
+      // 创建新目标
+      const target = document.createElement('div');
+      target.className = 'game-target';
+      target.style.left = `${position.x}px`;
+      target.style.top = `${position.y}px`;
+      
+      gameElements.canvas.appendChild(target);
+    }
+    
+    // 检查碰撞
+    function checkCollision() {
+      const playerRect = gameElements.player.getBoundingClientRect();
+      const target = document.querySelector('.game-target');
+      
+      if (!target) return false;
+      
+      const targetRect = target.getBoundingClientRect();
+      
+      return !(
+        playerRect.right < targetRect.left ||
+        playerRect.left > targetRect.right ||
+        playerRect.bottom < targetRect.top ||
+        playerRect.top > targetRect.bottom
+      );
+    }
+    
+    // 移动玩家
+    function movePlayer(x, y) {
+      gameState.playerX = x;
+      gameState.playerY = y;
+      
+      gameElements.player.style.left = `${x}px`;
+      gameElements.player.style.top = `${y}px`;
+      
+      if (checkCollision()) {
+        // 收集目标
+        gameState.score += 1;
+        gameElements.scoreDisplay.textContent = gameState.score;
+        createTarget();
+        
+        // 检查成就
+        checkAchievements();
+      }
+    }
+    
+    // 检查成就
+    function checkAchievements() {
+      // 示例：第一个点
+      if (gameState.score === 1) {
+        unlockAchievement('first_point', '第一点', '收集了你的第一个点');
+      }
+      
+      // 示例：收集大师
+      if (gameState.score === 5) {
+        unlockAchievement('collector_5', '收集高手', '收集了5个点');
+      }
+      
+      // 示例：收集达人
+      if (gameState.score === 10) {
+        unlockAchievement('collector_10', '收集达人', '收集了10个点');
+      }
+    }
+    
+    // 解锁成就
+    function unlockAchievement(id, title, description) {
+      // 显示成就弹窗
+      gameElements.achievementPopup.querySelector('.achievement-title').textContent = title;
+      gameElements.achievementPopup.querySelector('.achievement-desc').textContent = description;
+      gameElements.achievementPopup.classList.add('show');
+      
+      // 3秒后隐藏弹窗
+      setTimeout(() => {
+        gameElements.achievementPopup.classList.remove('show');
+      }, 3000);
+      
+      // 发送成就到父窗口
+      sendAchievement(id, title, description);
+    }
+    
+    // 向父窗口发送成就
+    function sendAchievement(id, title, description) {
+      if (window.parent !== window) {
+        window.parent.postMessage({
+          type: 'GAME_ACHIEVEMENT',
+          payload: {
+            id,
+            title,
+            description,
+            game: 'simple-collection-game',
+            timestamp: new Date().toISOString()
+          },
+          source: 'game-iframe'
+        }, '*');
+      }
+    }
+    
+    // 向父窗口发送游戏进度
+    function sendGameProgress() {
+      if (window.parent !== window) {
+        window.parent.postMessage({
+          type: 'GAME_PROGRESS',
+          payload: {
+            score: gameState.score,
+            level: Math.floor(gameState.score / 5) + 1,
+            timestamp: new Date().toISOString()
+          },
+          source: 'game-iframe'
+        }, '*');
+      }
+      
+      alert(`进度已保存：${gameState.score}分`);
+    }
+    
+    // 处理从父窗口接收的消息
+    function handleParentMessage(event) {
+      // 简单的安全检查（实际环境中应该更严格）
+      try {
+        const data = event.data;
+        
+        if (!data || !data.type) return;
+        
+        switch (data.type) {
+          case 'USER_INFO':
+            handleUserInfo(data.payload);
+            break;
+            
+          case 'GAME_CONTROL':
+            handleGameControl(data.payload);
+            break;
+        }
+      } catch (err) {
+        console.error('处理消息出错:', err);
+      }
+    }
+    
+    // 处理用户信息
+    function handleUserInfo(userInfo) {
+      if (!userInfo) return;
+      
+      gameState.userInfo = userInfo;
+      
+      // 更新UI显示用户信息
+      if (userInfo.name) {
+        gameElements.userName.textContent = userInfo.name;
+      }
+      
+      if (userInfo.avatar) {
+        // 如果有头像URL，可以设置为背景图
+        gameElements.userAvatar.innerHTML = '';
+        gameElements.userAvatar.style.backgroundImage = `url(${userInfo.avatar})`;
+        gameElements.userAvatar.style.backgroundSize = 'cover';
+      } else if (userInfo.name) {
+        // 否则使用名字首字母
+        gameElements.userAvatar.textContent = userInfo.name.charAt(0).toUpperCase();
+      }
+    }
+    
+    // 处理游戏控制命令
+    function handleGameControl(controlData) {
+      if (!controlData || !controlData.action) return;
+      
+      switch (controlData.action) {
+        case 'pause':
+          pauseGame();
+          break;
+          
+        case 'resume':
+          resumeGame();
+          break;
+          
+        case 'restart':
+          restartGame();
+          break;
+      }
+    }
+    
+    // 暂停游戏
+    function pauseGame() {
+      gameState.isPlaying = false;
+      gameElements.startButton.textContent = '继续游戏';
+    }
+    
+    // 继续游戏
+    function resumeGame() {
+      gameState.isPlaying = true;
+      gameElements.startButton.textContent = '暂停游戏';
+    }
+    
+    // 重新开始游戏
+    function restartGame() {
+      gameState.score = 0;
+      gameElements.scoreDisplay.textContent = '0';
+      gameState.isPlaying = true;
+      gameElements.startButton.textContent = '暂停游戏';
+      createTarget();
+    }
+    
+    // 游戏初始化
+    function initGame() {
+      // 监听鼠标移动
+      gameElements.canvas.addEventListener('mousemove', function(e) {
+        if (!gameState.isPlaying) return;
+        
+        const rect = gameElements.canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        movePlayer(x, y);
+      });
+      
+      // 监听触摸移动（移动设备）
+      gameElements.canvas.addEventListener('touchmove', function(e) {
+        if (!gameState.isPlaying) return;
+        
+        e.preventDefault();
+        const touch = e.touches[0];
+        const rect = gameElements.canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        
+        movePlayer(x, y);
+      });
+      
+      // 开始/暂停按钮
+      gameElements.startButton.addEventListener('click', function() {
+        if (gameState.isPlaying) {
+          pauseGame();
+        } else {
+          resumeGame();
+          // 如果是第一次开始，创建目标
+          if (gameState.score === 0) {
+            createTarget();
+          }
+        }
+      });
+      
+      // 保存进度按钮
+      gameElements.saveProgressButton.addEventListener('click', sendGameProgress);
+      
+      // 解锁成就按钮
+      gameElements.achievementButton.addEventListener('click', function() {
+        unlockAchievement(
+          'manual_achievement',
+          '手动成就',
+          '你手动解锁了一个成就！'
+        );
+      });
+      
+      // 监听从父窗口发来的消息
+      window.addEventListener('message', handleParentMessage);
+      
+      // 告知父窗口游戏已加载
+      if (window.parent !== window) {
+        window.parent.postMessage({
+          type: 'GAME_LOADED',
+          payload: {
+            name: '简易收集游戏',
+            version: '1.0.0'
+          },
+          source: 'game-iframe'
+        }, '*');
+      }
+    }
+    
+    // 启动游戏
+    document.addEventListener('DOMContentLoaded', initGame);
+  </script>
+</body>
+</html> 

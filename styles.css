@@ -1,0 +1,409 @@
+<<<<<<< HEAD
+/* HTML5游戏聚合平台样式 */
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 更好的排版 */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.015em;
+}
+
+/* 苹果风格按钮 */
+.rounded-full {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rounded-full:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.rounded-full:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+}
+
+/* 改进的iframe容器 */
+.aspect-w-16.aspect-h-9 {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9比例 */
+  height: 0;
+  overflow: hidden;
+}
+
+.aspect-w-16.aspect-h-9 iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+/* 卡片悬停效果 */
+.game-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 增强的导航 */
+nav a {
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0071e3;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* 标签样式 */
+.game-card .inline-block {
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover .inline-block {
+  transform: scale(1.05);
+}
+
+/* 收藏按钮效果 */
+.favorite-button {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.favorite-button:hover {
+  transform: scale(1.1);
+  background-color: #f9f9f9;
+}
+
+.favorite-button.active {
+  background-color: #ffeee6;
+}
+
+.favorite-button.active svg {
+  fill: #ff3b30;
+  stroke: #ff3b30;
+}
+
+/* 游戏详情页样式 */
+#game-frame-container {
+  transition: transform 0.3s ease;
+  transform-origin: center top;
+}
+
+#game-frame-container:hover {
+  transform: scale(1.01);
+}
+
+/* 评分星星效果 */
+.rating-star {
+  transition: transform 0.2s ease;
+}
+
+.rating-star:hover {
+  transform: scale(1.2);
+}
+
+.rating-star.active svg {
+  color: #ffcc00;
+}
+
+.rating-star:hover ~ .rating-star svg {
+  color: #gray-300;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  #game-frame {
+    height: 300px !important;
+  }
+  
+  .game-card {
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* 修复iOS点击高亮 */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 图片优化 */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* 页面元素动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section {
+  opacity: 0;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+section.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 页面初始动画 */
+.hero-title {
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.hero-description {
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.hero-buttons {
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+/* 改进可访问性的焦点样式 */
+:focus {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
+/* 为鼠标用户隐藏轮廓，但为键盘导航保留 */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 分页控件样式 */
+.pagination a {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #f5f5f7;
+}
+
+/* 筛选标签样式 */
+#filter-tags .filter-tag {
+  transition: background-color 0.2s ease;
+}
+
+#filter-tags .filter-tag:hover {
+  background-color: #e5e5ea;
+}
+
+/* 加载中状态样式 */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+=======
+/* Additional styles for Monster Survivors website */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better typography */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.015em;
+}
+
+/* Apple-style buttons */
+.rounded-full {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rounded-full:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.rounded-full:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+}
+
+/* Improved iframe container */
+.aspect-w-16.aspect-h-9 {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.aspect-w-16.aspect-h-9 iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+/* Card hover effects */
+.bg-apple-gray.rounded-2xl {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bg-apple-gray.rounded-2xl:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced navigation */
+nav a {
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0071e3;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Section transitions */
+section {
+  transition: background-color 0.5s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .aspect-w-16.aspect-h-9 iframe {
+    height: 300px;
+  }
+}
+
+/* Fix iOS tap highlight */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Enhanced shadows for depth */
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Image optimization placeholder */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Animation for page elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section > div {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Improve focus styles for accessibility */
+:focus {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+}
+
+/* Hide outline for mouse users, but keep for keyboard navigation */
+:focus:not(:focus-visible) {
+  outline: none;
+>>>>>>> 626d157b4157301c451b3c83aa5b4b36721d1f1d
+} 

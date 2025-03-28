@@ -1,0 +1,410 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5游戏聚合平台 - 免费在线游戏</title>
+  <meta name="description" content="畅玩免费HTML5游戏，包括动作、生存、角色扮演等多种类型。无需下载，即点即玩。">
+  <link rel="canonical" href="https://html5gamehub.com">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            apple: {
+              gray: '#f5f5f7',
+              darkgray: '#86868b',
+              black: '#1d1d1f',
+              blue: '#0071e3',
+              darkblue: '#0077ED'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans bg-apple-gray text-apple-black min-h-screen flex flex-col">
+  <!-- Navigation -->
+  <nav class="bg-black bg-opacity-90 text-white py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+      <a href="/" class="text-xl font-semibold">HTML5游戏聚合平台</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="/" class="hover:text-apple-blue transition">首页</a>
+        <a href="/games.html" class="hover:text-apple-blue transition">游戏库</a>
+        <a href="#about" class="hover:text-apple-blue transition">关于</a>
+        <a href="#features" class="hover:text-apple-blue transition">特性</a>
+      </div>
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 px-4 py-2">
+      <a href="/" class="block py-2 hover:text-apple-blue transition">首页</a>
+      <a href="/games.html" class="block py-2 hover:text-apple-blue transition">游戏库</a>
+      <a href="#about" class="block py-2 hover:text-apple-blue transition">关于</a>
+      <a href="#features" class="block py-2 hover:text-apple-blue transition">特性</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-12 md:py-20 bg-gradient-to-b from-black to-gray-900 text-white text-center">
+    <div class="container mx-auto px-4 md:px-6">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">HTML5游戏聚合平台</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8">一站式HTML5游戏体验，即点即玩，无需下载安装</p>
+      <a href="#game" class="bg-apple-blue hover:bg-apple-darkblue text-white font-semibold py-3 px-8 rounded-full transition duration-300 inline-block mr-4">立即游玩</a>
+      <a href="/games.html" class="bg-transparent hover:bg-white/10 text-white border border-white font-semibold py-3 px-8 rounded-full transition duration-300 inline-block">浏览更多游戏</a>
+    </div>
+  </section>
+
+  <!-- Game Section -->
+  <section id="game" class="py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6 max-w-5xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">热门游戏: Monster Survivors</h2>
+      <div class="bg-black p-2 rounded-lg shadow-xl">
+        <div class="aspect-w-16 aspect-h-9 w-full">
+          <iframe src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html" 
+                  class="w-full h-[500px] md:h-[600px]" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-apple-gray">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">关于我们的平台</h2>
+      <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+        <p class="text-lg mb-6">HTML5游戏聚合平台是一个提供各种高质量HTML5游戏的在线平台。我们精心挑选了各种类型的游戏，包括动作、策略、角色扮演和休闲游戏，为您提供丰富多样的游戏体验。</p>
+        <p class="text-lg">由于使用HTML5技术，您可以在任何设备上即点即玩，无需下载安装任何应用程序。所有游戏都经过优化，可在电脑、平板和智能手机上流畅运行。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">平台特色</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-apple-gray rounded-2xl p-6 shadow-md">
+          <h2 class="text-2xl font-semibold mb-4">多种游戏类型</h2>
+          <p>我们提供各种类型的游戏，包括动作、生存、策略、角色扮演等，满足不同玩家的需求。</p>
+        </div>
+        <div class="bg-apple-gray rounded-2xl p-6 shadow-md">
+          <h2 class="text-2xl font-semibold mb-4">无需下载</h2>
+          <p>所有游戏都是基于HTML5技术开发的，可以直接在浏览器中运行，无需下载任何应用程序。</p>
+        </div>
+        <div class="bg-apple-gray rounded-2xl p-6 shadow-md">
+          <h2 class="text-2xl font-semibold mb-4">跨设备兼容</h2>
+          <p>我们的游戏可以在电脑、平板和智能手机等各种设备上流畅运行，随时随地畅玩。</p>
+        </div>
+        <div class="bg-apple-gray rounded-2xl p-6 shadow-md">
+          <h2 class="text-2xl font-semibold mb-4">定期更新</h2>
+          <p>我们会定期更新游戏库，加入新的游戏和功能，为您提供更丰富的游戏体验。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Game Categories Section -->
+  <section id="categories" class="py-16 bg-apple-gray">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">游戏分类</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <a href="/games.html?category=Action" class="group">
+          <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition duration-300">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto text-blue-600 text-2xl group-hover:bg-blue-200">🎮</div>
+            <h3 class="text-xl font-semibold text-center mb-2">动作游戏</h3>
+            <p class="text-center text-gray-600">刺激的动作游戏，测试你的反应速度和操作技巧。</p>
+          </div>
+        </a>
+        <a href="/games.html?category=Strategy" class="group">
+          <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition duration-300">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto text-green-600 text-2xl group-hover:bg-green-200">🧠</div>
+            <h3 class="text-xl font-semibold text-center mb-2">策略游戏</h3>
+            <p class="text-center text-gray-600">需要深思熟虑的策略游戏，考验你的智慧和决策能力。</p>
+          </div>
+        </a>
+        <a href="/games.html?category=RPG" class="group">
+          <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition duration-300">
+            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 mx-auto text-purple-600 text-2xl group-hover:bg-purple-200">⚔️</div>
+            <h3 class="text-xl font-semibold text-center mb-2">角色扮演</h3>
+            <p class="text-center text-gray-600">沉浸式的角色扮演游戏，体验丰富的故事和角色成长。</p>
+          </div>
+        </a>
+      </div>
+      <div class="text-center mt-8">
+        <a href="/games.html" class="inline-block bg-apple-blue hover:bg-apple-darkblue text-white font-semibold py-2 px-6 rounded-md transition duration-300">查看所有游戏分类</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8 mt-auto">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">HTML5游戏聚合平台</h3>
+          <p class="text-gray-400 text-sm">提供精选高质量HTML5游戏，让您随时随地享受游戏乐趣。</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">导航</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/" class="hover:text-white transition">首页</a></li>
+            <li><a href="/games.html" class="hover:text-white transition">游戏库</a></li>
+            <li><a href="#about" class="hover:text-white transition">关于我们</a></li>
+            <li><a href="#features" class="hover:text-white transition">平台特色</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">游戏分类</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/games.html?category=Action" class="hover:text-white transition">动作游戏</a></li>
+            <li><a href="/games.html?category=Survival" class="hover:text-white transition">生存游戏</a></li>
+            <li><a href="/games.html?category=Strategy" class="hover:text-white transition">策略游戏</a></li>
+            <li><a href="/games.html?category=RPG" class="hover:text-white transition">角色扮演</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">联系我们</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>邮箱: contact@example.com</li>
+            <li>微信公众号: HTML5GameHub</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">© 2023 HTML5游戏聚合平台. 保留所有权利.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white transition">隐私政策</a>
+          <a href="#" class="text-gray-400 hover:text-white transition">使用条款</a>
+          <a href="#" class="text-gray-400 hover:text-white transition">Cookie政策</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monster Survivors - Survive the Endless Monster Hordes</title>
+  <meta name="description" content="Play Monster Survivors online for free. Survive waves of monsters in this action-packed survival game with upgradable characters and skills.">
+  <link rel="canonical" href="https://monstersurvivors.com">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            apple: {
+              gray: '#f5f5f7',
+              darkgray: '#86868b',
+              black: '#1d1d1f',
+              blue: '#0071e3',
+              darkblue: '#0077ED'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans bg-apple-gray text-apple-black min-h-screen flex flex-col">
+  <!-- Navigation -->
+  <nav class="bg-black bg-opacity-90 text-white py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+      <a href="/" class="text-xl font-semibold">MonsterSurvivors.com</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="#game" class="hover:text-apple-blue transition">Play Now</a>
+        <a href="#about" class="hover:text-apple-blue transition">About</a>
+        <a href="#features" class="hover:text-apple-blue transition">Features</a>
+        <a href="#characters" class="hover:text-apple-blue transition">Characters</a>
+      </div>
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 px-4 py-2">
+      <a href="#game" class="block py-2 hover:text-apple-blue transition">Play Now</a>
+      <a href="#about" class="block py-2 hover:text-apple-blue transition">About</a>
+      <a href="#features" class="block py-2 hover:text-apple-blue transition">Features</a>
+      <a href="#characters" class="block py-2 hover:text-apple-blue transition">Characters</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-12 md:py-20 bg-gradient-to-b from-black to-gray-900 text-white text-center">
+    <div class="container mx-auto px-4 md:px-6">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Monster Survivors</h1>
+      <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8">Survive endless waves of monsters in this addictive action-packed survival game.</p>
+      <a href="#game" class="bg-apple-blue hover:bg-apple-darkblue text-white font-semibold py-3 px-8 rounded-full transition duration-300 inline-block">Play Now</a>
+    </div>
+  </section>
+
+  <!-- Game Section -->
+  <section id="game" class="py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6 max-w-5xl">
+      <div class="bg-black p-2 rounded-lg shadow-xl">
+        <div class="aspect-w-16 aspect-h-9 w-full">
+          <iframe src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html" 
+                  class="w-full h-[500px] md:h-[600px]" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-apple-gray">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">About Monster Survivors</h2>
+      <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+        <p class="text-lg mb-6">Monster Survivors is an action-packed survival game where you must fend off endless waves of monsters. Choose your character, collect experience to level up, and unlock powerful new skills to stay alive as long as possible in this thrilling arcade experience.</p>
+        <p class="text-lg">Inspired by popular roguelike survival games, Monster Survivors offers a simple yet addictive gameplay loop that keeps you coming back for more. How long can you survive against the monster hordes?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Game Features</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-apple-gray rounded-2xl p-6 shadow-md">
+          <h2 class="text-2xl font-semibold mb-4">Endless Gameplay</h2>
+          <p>Face increasingly difficult waves of monsters in an endless survival challenge that tests your skills and strategy.</p>
+        </div>
+        <div class="bg-apple-gray rounded-2xl p-6 shadow-md">
+          <h2 class="text-2xl font-semibold mb-4">Character Progression</h2>
+          <p>Level up your character by collecting experience, unlocking new abilities and improving your stats.</p>
+        </div>
+        <div class="bg-apple-gray rounded-2xl p-6 shadow-md">
+          <h2 class="text-2xl font-semibold mb-4">Various Enemies</h2>
+          <p>Battle against a diverse array of monsters, each with unique behaviors and attack patterns.</p>
+        </div>
+        <div class="bg-apple-gray rounded-2xl p-6 shadow-md">
+          <h2 class="text-2xl font-semibold mb-4">Upgradable Weapons</h2>
+          <p>Find and upgrade different weapons and items to create powerful combinations for monster slaying.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Characters Section -->
+  <section id="characters" class="py-16 bg-apple-gray">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Playable Characters</h2>
+      <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+        <p class="text-lg mb-8">Choose from various characters, each with unique starting abilities and playstyles:</p>
+        <div class="space-y-6">
+          <div>
+            <h2 class="text-2xl font-semibold mb-2">The Warrior</h2>
+            <p>A balanced fighter with strong melee attacks and decent health. Perfect for beginners.</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold mb-2">The Mage</h2>
+            <p>Specializes in powerful area-of-effect spells but has lower health. Requires careful positioning.</p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold mb-2">The Ranger</h2>
+            <p>Excels at long-range combat with rapid attacks. Maintains distance from enemies for survival.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Play Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center">How to Play</h2>
+      <div class="bg-apple-gray rounded-2xl p-6 md:p-8 shadow-md">
+        <ol class="list-decimal list-inside space-y-4 text-lg">
+          <li><span class="font-semibold">Movement:</span> Use WASD keys or arrow keys to move your character</li>
+          <li><span class="font-semibold">Attacks:</span> Your character attacks automatically when enemies are in range</li>
+          <li><span class="font-semibold">Leveling:</span> Collect experience gems dropped by defeated monsters</li>
+          <li><span class="font-semibold">Upgrades:</span> Choose new abilities or upgrades when you level up</li>
+          <li><span class="font-semibold">Survival:</span> Stay alive as long as possible and aim for a high score!</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 mt-auto">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex flex-col md:flex-row justify-between">
+        <div class="mb-8 md:mb-0">
+          <h3 class="text-xl font-bold mb-4">Monster Survivors</h3>
+          <p class="max-w-xs text-apple-darkgray">An addictive action survival game where you battle endless waves of monsters.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Navigation</h4>
+            <ul class="space-y-2 text-apple-darkgray">
+              <li><a href="#game" class="hover:text-white transition">Play Now</a></li>
+              <li><a href="#about" class="hover:text-white transition">About</a></li>
+              <li><a href="#features" class="hover:text-white transition">Features</a></li>
+              <li><a href="#characters" class="hover:text-white transition">Characters</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Legal</h4>
+            <ul class="space-y-2 text-apple-darkgray">
+              <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+              <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+              <li><a href="#" class="hover:text-white transition">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-apple-darkgray">
+        <p>&copy; 2023 MonsterSurvivors.com. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+>>>>>>> 626d157b4157301c451b3c83aa5b4b36721d1f1d
+</html> 

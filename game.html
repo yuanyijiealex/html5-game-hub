@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>游戏详情 - HTML5游戏聚合平台</title>
+  <meta name="description" content="体验精彩的HTML5游戏，无需下载即可游玩">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            apple: {
+              gray: '#f5f5f7',
+              darkgray: '#86868b',
+              black: '#1d1d1f',
+              blue: '#0071e3',
+              darkblue: '#0077ED'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans bg-apple-gray text-apple-black min-h-screen flex flex-col">
+  <!-- 导航栏 -->
+  <nav class="bg-black bg-opacity-90 text-white py-4 sticky top-0 z-50">
+    <div class="container mx-auto px-4 md:px-6 flex justify-between items-center">
+      <a href="/" class="text-xl font-semibold">HTML5游戏聚合平台</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="/" class="hover:text-apple-blue transition">首页</a>
+        <a href="/games.html" class="hover:text-apple-blue transition">游戏库</a>
+        <a href="#" class="hover:text-apple-blue transition">热门推荐</a>
+        <a href="#" class="hover:text-apple-blue transition">关于我们</a>
+      </div>
+      <!-- 移动端菜单按钮 -->
+      <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <!-- 移动端菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 px-4 py-2">
+      <a href="/" class="block py-2 hover:text-apple-blue transition">首页</a>
+      <a href="/games.html" class="block py-2 hover:text-apple-blue transition">游戏库</a>
+      <a href="#" class="block py-2 hover:text-apple-blue transition">热门推荐</a>
+      <a href="#" class="block py-2 hover:text-apple-blue transition">关于我们</a>
+    </div>
+  </nav>
+
+  <!-- 游戏内容区域 -->
+  <div class="flex-grow">
+    <!-- 游戏加载中占位符 -->
+    <div id="game-loading" class="py-16 text-center">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-apple-blue mx-auto"></div>
+      <p class="mt-4 text-xl text-apple-darkgray">正在加载游戏信息...</p>
+    </div>
+
+    <!-- 游戏详情内容 -->
+    <div id="game-content" class="hidden">
+      <!-- 游戏标题和信息栏 -->
+      <section class="py-6 bg-white shadow-md">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+              <h1 id="game-title" class="text-3xl md:text-4xl font-bold"></h1>
+              <div class="flex items-center mt-2">
+                <div class="flex items-center mr-4">
+                  <span id="game-rating" class="text-yellow-500 font-bold mr-1"></span>
+                  <svg class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                  </svg>
+                  <span id="game-rating-count" class="text-apple-darkgray text-sm ml-1"></span>
+                </div>
+                <div id="game-tags" class="flex flex-wrap gap-2"></div>
+              </div>
+            </div>
+            <div class="mt-4 md:mt-0 flex space-x-3">
+              <button id="favorite-button" class="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+                <svg id="favorite-icon" class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+                <span id="favorite-text">收藏</span>
+              </button>
+              <button id="share-button" class="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                </svg>
+                分享
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 游戏内容区域 -->
+      <section class="py-8">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="flex flex-col lg:flex-row">
+            <!-- 游戏主区域 -->
+            <div class="lg:w-2/3 lg:pr-8">
+              <!-- 游戏框架 -->
+              <div class="bg-black p-2 rounded-lg shadow-xl mb-8">
+                <div id="game-frame-container" class="relative">
+                  <div class="aspect-w-16 aspect-h-9 w-full">
+                    <iframe id="game-frame" 
+                            class="w-full h-[500px] md:h-[600px]" 
+                            frameborder="0" 
+                            allowfullscreen 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                            loading="lazy"></iframe>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 游戏描述 -->
+              <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">游戏介绍</h2>
+                <p id="game-description" class="text-gray-700 leading-relaxed"></p>
+              </div>
+
+              <!-- 游戏特性 -->
+              <div id="features-section" class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">游戏特点</h2>
+                <ul id="game-features" class="list-disc pl-5 space-y-2 text-gray-700"></ul>
+              </div>
+
+              <!-- 操作说明 -->
+              <div id="instructions-section" class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4">操作说明</h2>
+                <div id="game-instructions" class="space-y-3"></div>
+              </div>
+            </div>
+
+            <!-- 侧边栏 -->
+            <div class="lg:w-1/3 mt-8 lg:mt-0">
+              <!-- 相关游戏 -->
+              <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">相关游戏</h2>
+                <div id="related-games" class="space-y-4"></div>
+              </div>
+
+              <!-- 游戏评分 -->
+              <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-4">为游戏评分</h2>
+                <div class="flex items-center justify-center space-x-1" id="rating-stars">
+                  <button class="rating-star p-1" data-rating="1">
+                    <svg class="w-8 h-8 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  </button>
+                  <button class="rating-star p-1" data-rating="2">
+                    <svg class="w-8 h-8 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  </button>
+                  <button class="rating-star p-1" data-rating="3">
+                    <svg class="w-8 h-8 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  </button>
+                  <button class="rating-star p-1" data-rating="4">
+                    <svg class="w-8 h-8 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  </button>
+                  <button class="rating-star p-1" data-rating="5">
+                    <svg class="w-8 h-8 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  </button>
+                </div>
+                <p id="rating-message" class="text-center mt-4 text-apple-darkgray text-sm">点击星星为游戏评分</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="bg-gray-900 text-white py-8 mt-auto">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4">HTML5游戏聚合平台</h3>
+          <p class="text-gray-400 text-sm">提供精选高质量HTML5游戏，让您随时随地享受游戏乐趣。</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">导航</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/" class="hover:text-white transition">首页</a></li>
+            <li><a href="/games.html" class="hover:text-white transition">游戏库</a></li>
+            <li><a href="#" class="hover:text-white transition">热门推荐</a></li>
+            <li><a href="#" class="hover:text-white transition">关于我们</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">游戏分类</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="/games.html?category=Action" class="hover:text-white transition">动作游戏</a></li>
+            <li><a href="/games.html?category=Survival" class="hover:text-white transition">生存游戏</a></li>
+            <li><a href="/games.html?category=Strategy" class="hover:text-white transition">策略游戏</a></li>
+            <li><a href="/games.html?category=RPG" class="hover:text-white transition">角色扮演</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4">联系我们</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>邮箱: contact@example.com</li>
+            <li>微信公众号: HTML5GameHub</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm">© 2023 HTML5游戏聚合平台. 保留所有权利.</p>
+        <div class="flex space-x-4 mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white transition">隐私政策</a>
+          <a href="#" class="text-gray-400 hover:text-white transition">使用条款</a>
+          <a href="#" class="text-gray-400 hover:text-white transition">Cookie政策</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/iframe-bridge.js"></script>
+  <script src="js/game-detail.js"></script>
+</body>
+</html> 
